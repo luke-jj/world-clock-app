@@ -1,5 +1,7 @@
 /*
- *
+ * World Clock App - Application
+ * Copyright (c) 2019 Luca J
+ * Licensed under the MIT license.
  */
 
 'use strict';
@@ -26,3 +28,4 @@ const locations = process.argv.slice(2);
 for (let location of locations) {
   getTime(location);
 }
+

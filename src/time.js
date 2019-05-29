@@ -1,5 +1,7 @@
 /*
- *
+ * World Clock App - Module
+ * Copyright (c) 2019 Luca J
+ * Licensed under the MIT license.
  */
 
 'use strict';
@@ -10,7 +12,6 @@
  */
 
 const http = require('http');
-const location = 'Tokyo'.toLowerCase();
 
 /**
  * Module exports.
@@ -24,7 +25,7 @@ module.exports.getTime = requestTimezones;
  * The location must exist in the timezones.json manifest provided by the api.
  *
  * @param {string} location
- * @public
+ * @private
  */
 
 function requestTime(location) {
@@ -37,10 +38,7 @@ function requestTime(location) {
 
     res.on('end', () => {
       const parsedData = JSON.parse(rawData);
-      // console.log(parsedData);
-
       const time = new Date(parsedData.datetime.split('.')[0]);
-      // console.log(time);
 
       console.log(`The current time in ${parsedData.timezone} is ${time.getHours()}:${time.getMinutes()} ${time.toDateString()} ${parsedData.abbreviation} - UTC${parsedData.utc_offset}.`);
     });
@@ -49,9 +47,11 @@ function requestTime(location) {
 }
 
 /*
- * Get a timezone manifest from the api.
+ * Get a timezone manifest from the api, search for the input location and
+ * pass the corresponding zone/location on to the requestTime() function.
  *
- * @param {string} location name to be passed on to the requestTime() function.
+ * @param {string} location name to be queried.
+ * @public
  */
 
 function requestTimezones(location) {
@@ -64,12 +64,9 @@ function requestTimezones(location) {
 
     res.on('end', () => {
       const parsedData = JSON.parse(rawData);
-      // console.log(parsedData);
-
       const zone = parsedData.find((zone) => {
         return zone.toLowerCase().includes(location.toLowerCase());
       });
-      // console.log(zone);
 
       requestTime(zone);
     });
