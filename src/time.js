@@ -42,7 +42,6 @@ function requestTime(location) {
 
       console.log(`The current time in ${parsedData.timezone} is ${time.getHours()}:${time.getMinutes()} ${time.toDateString()} ${parsedData.abbreviation} - UTC${parsedData.utc_offset}.`);
     });
-
   });
 }
 
