@@ -56,6 +56,7 @@ function requestTime(location) {
 function requestTimezones(location) {
   http.get('http://worldtimeapi.org/api/timezone', (res) => {
     let rawData = '';
+    const preparedLocation = location.trim().toLowerCase().replace(' ', '_');
 
     res.on('data', (chunk) => {
       rawData += chunk;
@@ -64,8 +65,13 @@ function requestTimezones(location) {
     res.on('end', () => {
       const parsedData = JSON.parse(rawData);
       const zone = parsedData.find((zone) => {
-        return zone.toLowerCase().includes(location.toLowerCase());
+        return zone.toLowerCase().includes(preparedLocation);
       });
+
+      if (!zone) {
+        console.log(`Location ${location} not found in the timezone manifest.`);
+        return;
+      }
 
       requestTime(zone);
     });

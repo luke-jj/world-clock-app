@@ -8,7 +8,7 @@ Install the latest version of node (v10.0.0+) and npm (v6.0.0+).
 No additional dependencies are required.
 
 ## Usage
-Start the app with:
+Start the app in terminal from the project folder with:
 
     npm start <locationname> <locationname> ...
 
@@ -16,8 +16,11 @@ or use node directly:
 
     node src/app.js <locationname> <locationname> ...
 
+For a list of all 386 available zones and locations see
+[locations](http://worldtimeapi.org/api/timezone).
+
 ### Examples
 
     node src/app.js Europe Singapore
 
-    npm start london rome
+    npm start london rome 'los angeles'
