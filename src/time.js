@@ -32,9 +32,7 @@ function requestTime(location) {
   http.get(`http://worldtimeapi.org/api/timezone/${location}`, (res) => {
     let rawData = '';
 
-    res.on('data', (chunk) => {
-      rawData += chunk;
-    });
+    res.on('data', (chunk) => rawData += chunk);
 
     res.on('end', () => {
       const parsedData = JSON.parse(rawData);
@@ -58,9 +56,7 @@ function requestTimezones(location) {
     let rawData = '';
     const preparedLocation = location.trim().toLowerCase().replace(' ', '_');
 
-    res.on('data', (chunk) => {
-      rawData += chunk;
-    });
+    res.on('data', (chunk) => rawData += chunk);
 
     res.on('end', () => {
       const parsedData = JSON.parse(rawData);
