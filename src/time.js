@@ -20,7 +20,7 @@ const http = require('http');
 
 module.exports.getTime = requestTimezones;
 
-/*
+/**
  * Retrieve, format and print the current time for a given location.
  * The location must exist in the timezones.json manifest provided by the api.
  *
@@ -43,7 +43,7 @@ function requestTime(location) {
   });
 }
 
-/*
+/**
  * Get a timezone manifest from the api, search for the input location and
  * pass the corresponding zone/location on to the requestTime() function.
  *
